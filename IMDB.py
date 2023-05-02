@@ -16,9 +16,10 @@ movie_id = search[0].getID()
 
 print(movie_id)
 
-url = "https://www.imdb.com/title/tt" + movie_id
+url = "https://www.imdb.com/title/tt" + movie_id + "/"
 response = requests.get(url)
-soup = BeautifulSoup(response, "html.parser")
+soup = BeautifulSoup(response.text, "html.parser")
+# print(response.text)
 print(soup)
 
 # if not search:
