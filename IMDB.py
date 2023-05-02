@@ -2,6 +2,7 @@ from imdb import Cinemagoer
 import requests
 import re
 from bs4 import BeautifulSoup
+import json
 
 # making imdb instance
 ia = Cinemagoer()
@@ -17,12 +18,12 @@ movie_id = search[0].getID()
 print(movie_id)
 
 url = "https://www.imdb.com/title/tt" + movie_id + "/"
-response = requests.get(url)
+response = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"})
 soup = BeautifulSoup(response.text, "html.parser")
-# print(response.text)
-print(soup)
 
-# if not search:
-#     print("No results found")
-# else:
-#     print("ID of the first result", search[0].getID())
+
+data = json.loads(soup.find("script", type="application/ld+json").text)
+
+# print(response.text)
+rating = data["aggregateRating"]["ratingValue"]
+print(rating)
