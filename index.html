@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IMDB Ratings Fetcher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      margin-top: 50px;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
+    form {
+      margin-top: 30px;
+      text-align: center;
+    }
+    
+    input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    
+    .result {
+      margin-top: 30px;
+      text-align: center;
+    }
+    
+    .result h2 {
+      color: #333;
+    }
+    
+    .result p {
+      color: #777;
+      font-size: 18px;
+    }
+
+    /* Colorful styles */
+    h1 {
+      color: #FF5722;
+    }
+
+    input[type="submit"] {
+      background-color: #FF5722;
+    }
+
+    .result p {
+      color: #009688;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>IMDB Ratings Fetcher</h1>
+    <form>
+      <input type="text" id="movieTitle" placeholder="Enter movie title">
+      <input type="submit" value="Fetch Ratings">
+    </form>
+    <div class="result" id="result">
+      <!-- The fetched ratings will be displayed here -->
+    </div>
+  </div>
+
+  <script>
+    // Fetch ratings on form submission
+    document.querySelector('form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+      var movieTitle = document.querySelector('#movieTitle').value;
+      fetchRatings(movieTitle);
+    });
+
+    // Fetch ratings from IMDB API
+    function fetchRatings(movieTitle) {
+      // You can implement the API call here
+      // and update the result section with the fetched ratings
+      // For simplicity, this example doesn't include the actual API call.
+      
+      // Example result update
+      var resultElement = document.querySelector('#result');
+      resultElement.innerHTML = `
+        <h2>${movieTitle}</h2>
+        <p>IMDB Rating: 8.5/10</p>
+        <p>Metascore: 87</p>
+      `;
+    }
+  </script>
+</body>
+</html>
