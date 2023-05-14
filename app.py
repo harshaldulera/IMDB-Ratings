@@ -10,7 +10,7 @@ app = Flask(__name__)
 # Route for the home page
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template("D:\Documents\School\PP\IMDB-Ratings\index.html")
 
 # Route for processing the form submission
 @app.route('/result', methods=['POST'])
@@ -28,7 +28,7 @@ def result():
     movie_id = search[0].getID()
 
     url = "https://www.imdb.com/title/tt" + movie_id + "/"
-    response = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"})
+    response = requests.get(url, headers={"User-Agent":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"})
     soup = BeautifulSoup(response.text, "html.parser")
 
     data = json.loads(soup.find("script", type="application/ld+json").text)
