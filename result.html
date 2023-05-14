@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Rating App - Results</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333333;
+            text-align: center;
+        }
+
+        .result-info {
+            margin-bottom: 20px;
+        }
+
+        .result-label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            color: #555555;
+        }
+
+        .result-value {
+            font-size: 16px;
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Rating App - Results</h1>
+        <div class="result-info">
+            <span class="result-label">Movie Name:</span>
+            <span class="result-value">{{ movie_name }}</span>
+        </div>
+        <div class="result-info">
+            <span class="result-label">IMDb Rating:</span>
+            <span class="result-value">{{ imdb_rating }}</span>
+        </div>
+        <div class="result-info">
+            <span class="result-label">Rotten Tomatoes Rating:</span>
+            <span class="result-value">{{ rt_rating }}%</span>
+        </div>
+    </div>  
+</body>
+</html>
