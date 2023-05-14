@@ -12,7 +12,7 @@ app = Flask(__name__)
 def index():
     return render_template("D:\Documents\School\PP\IMDB-Ratings\index.html")
 
-# Route for processing the form submission
+# Route for processing the form submissionpip
 @app.route('/result', methods=['POST'])
 def result():
     # Creating IMDb instance
