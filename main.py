@@ -25,5 +25,5 @@ soup = BeautifulSoup(response.text, "html.parser")
 data = json.loads(soup.find("script", type="application/ld+json").text)
 
 # print(response.text)
-rating = data["aggregateRating"]["ratingValue"]
-print(rating)
+rating2 = data["aggregateRating"]["ratingValue"]
+print(rating2)
