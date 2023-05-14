@@ -1,43 +1,52 @@
+from flask import Flask, render_template, request
 from imdb import Cinemagoer
 import requests
-import re 
+import re
 from bs4 import BeautifulSoup
 import json
 
-# making imdb instance
-ia = Cinemagoer()
+app = Flask(__name__)
 
-#entering the name of the movie
-name = str(input("Enter name of the movie: "))
+# Route for the home page
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-#searching the movie
-search = ia.search_movie(name)
+# Route for processing the form submission
+@app.route('/result', methods=['POST'])
+def result():
+    # Creating IMDb instance
+    ia = Cinemagoer()
 
-# fetching movie ID
-movie_id = search[0].getID()
+    # Getting the movie name from the form submission
+    name = request.form['movie_name']
 
-print(movie_id)
+    # Searching for the movie
+    search = ia.search_movie(name)
 
-url = "https://www.imdb.com/title/tt" + movie_id + "/"
-response = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"})
-soup = BeautifulSoup(response.text, "html.parser")
+    # Fetching movie ID
+    movie_id = search[0].getID()
 
-data = json.loads(soup.find("script", type="application/ld+json").text)
+    url = "https://www.imdb.com/title/tt" + movie_id + "/"
+    response = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"})
+    soup = BeautifulSoup(response.text, "html.parser")
 
-# printing ratings from IMDB
-rating = data["aggregateRating"]["ratingValue"]
-print(rating)
+    data = json.loads(soup.find("script", type="application/ld+json").text)
 
+    # Fetching ratings from IMDb
+    rating = data["aggregateRating"]["ratingValue"]
 
-# fetching ratings from rottentomatoes
-url_rt = "https://www.rottentomatoes.com/m/" + name.replace(' ', '_')
-response = requests.get(url_rt, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"})
-soup = BeautifulSoup(response.text, "html.parser")
+    # Fetching ratings from Rotten Tomatoes
+    url_rt = "https://www.rottentomatoes.com/m/" + name.replace(' ', '_')
+    response = requests.get(url_rt, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"})
+    soup = BeautifulSoup(response.text, "html.parser")
 
-data = json.loads(soup.find("script", type="application/ld+json").text)
+    data = json.loads(soup.find("script", type="application/ld+json").text)
 
-rating2 = data["aggregateRating"]["ratingValue"]
+    rating2 = data["aggregateRating"]["ratingValue"]
 
-# printing ratings from rottentomatoes
+    # Render the result template with the ratings
+    return render_template('result.html', name=name, imdb_rating=rating, rt_rating=rating2)
 
-print(rating2 + '%')
+if __name__ == '__main__':
+    app.run()
