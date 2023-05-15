@@ -10,7 +10,7 @@ app = Flask(__name__)
 # Route for the home page
 @app.route('/')
 def index():
-    return render_template("D:\Documents\School\PP\IMDB-Ratings\index.html")
+    return render_template('index.html')
 
 # Route for processing the form submissionpip
 @app.route('/result', methods=['POST'])
