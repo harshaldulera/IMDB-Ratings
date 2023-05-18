@@ -3,6 +3,12 @@
 <head>
     <title>Movie Rating App</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
         body {
             display: flex;
             justify-content: center;
@@ -16,7 +22,7 @@
         .container {
             color: #000;
             border-radius: 20px;
-            padding: 2rem;
+            padding: 3rem;
             width: 100%;
             max-width: 450px;
             margin: 1rem;
@@ -26,6 +32,7 @@
             backdrop-filter: blur( 5px);
             -webkit-backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            {% comment %} background-color:red; {% endcomment %}
         }
 
         h1 {
@@ -36,7 +43,6 @@
 
         .form-group {
             margin-bottom: 20px;
-            padding: right;
             align-items: center;
         }
 
@@ -47,6 +53,7 @@
             color: #555555;
             justify-content: center;
             align-items: center;
+            padding-bottom: 0.5rem;
         }
         
         .form-input {
@@ -72,18 +79,29 @@
         .form-submit:hover {
             background-color: #006699;
         }
+
+        #main-form {
+            width: 100%%;
+        }
+        .form-title{
+            padding-bottom : 1rem ;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Movie Rating App</h1>
-        <form action="/result" method="POST">
+        <h1 class="form-title">Movie Rating App</h1>
+        <form id="main-form" action="/result" method="POST">
             <div class="form-group">
                 <label class="form-label">Enter the name of the movie:</label>
-                <input class="form-input" type="text" name="movie_name" required>
+                <input class="form-input" type="name" name="movie_name" required>
             </div>
             <button class="form-submit" type="submit">Get Ratings</button>
         </form>
     </div>
+    <script>
+        {% comment %} document.get  
+        document.body.style.backgroundImage = `url(https://source.unsplash.com/1600x900/?${name})` {% endcomment %}
+    </script>
 </body>
 </html>
