@@ -1,1 +1,101 @@
-Kunal ki mummy
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Rating App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #5BAFBB;
+            font-family: 'Popins', sans-serif;
+        }
+        
+        .container {
+            color: #000;
+            border-radius: 20px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 450px;
+            margin: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur( 5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            color: #333333;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            color: #555555;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 0.5rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+        }
+        
+        .form-submit {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #0088cc;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        
+        .form-submit:hover {
+            background-color: #006699;
+        }
+
+        #main-form {
+            width: 100%%;
+        }
+        .form-title{
+            padding-bottom : 1rem ;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="form-title">Movie Rating App</h1>
+        <form id="main-form" action="/result" method="POST">
+            <div class="form-group">
+                <label class="form-label">Enter the name of the movie:</label>
+                <input class="form-input" type="name" name="movie_name" required>
+            </div>
+            <button class="form-submit" type="submit">Get Ratings</button>
+        </form>
+    </div>
+</body>
+</html>
