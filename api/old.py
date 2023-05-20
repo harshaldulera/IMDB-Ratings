@@ -12,10 +12,11 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-# Route for processing the form submission
+# Route for processing the form submissionpip
 @app.route('/result', methods=['POST'])
 def result():
     try:
+
         # Creating IMDb instance
         ia = Cinemagoer()
 
@@ -30,18 +31,22 @@ def result():
 
         url = "https://www.imdb.com/title/tt" + movie_id + "/"
         response = requests.get(url, headers={"User-Agent":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"})
-        response.raise_for_status()  # Raise an exception if there's a 4xx or 5xx status code
-
         soup = BeautifulSoup(response.text, "html.parser")
-        data = json.loads(soup.find("script", type="application/ld+json").text)
-        rating = data["aggregateRating"]["ratingValue"]
-
-        url_rt = "https://www.rottentomatoes.com/m/" + name.replace(' ', '_')
-        response = requests.get(url_rt, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"})
+        # Raise an exception if there is a 4xx or 5xx status code
         response.raise_for_status()
 
-        soup = BeautifulSoup(response.text, "html.parser")
         data = json.loads(soup.find("script", type="application/ld+json").text)
+
+        # Fetching ratings from IMDb
+        rating = data["aggregateRating"]["ratingValue"]
+
+        # Fetching ratings from Rotten Tomatoes
+        url_rt = "https://www.rottentomatoes.com/m/" + name.replace(' ', '_')
+        response = requests.get(url_rt, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"})
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        data = json.loads(soup.find("script", type="application/ld+json").text)
+
         rating2 = data["aggregateRating"]["ratingValue"]
 
         # Render the result template with the ratings
@@ -52,7 +57,7 @@ def result():
         return redirect('/')
     except Exception as e:
         # Handle any other exceptions that may occur
-        return "An error occurred: " + str(e) + " (The entered movie name is invalid)"
+        return "An error occurred " + str(e)
 
 if __name__ == '__main__':
     app.run(debug=True)
