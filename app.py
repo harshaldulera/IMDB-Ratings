@@ -19,9 +19,10 @@ movie_id = search[0].getID()
 
 url = "https://www.imdb.com/title/tt" + movie_id + "/"
 response = requests.get(url, headers={"User-Agent":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"})
+#response = requests.get(url)
 soup = BeautifulSoup(response.text, "html.parser")
  # Raise an exception if there is a 4xx or 5xx status code
-
+print(response)
 data = json.loads(soup.find("script", type="application/ld+json").text)
 
 # Fetching ratings from IMDb
