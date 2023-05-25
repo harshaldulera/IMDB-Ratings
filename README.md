@@ -31,7 +31,7 @@ The application will be accessible at https://localhost:5000/
 
 ## Usage
 
-1. Open your web browser and go to http://localhost:5000.
+1. Open your web browser and go to https://movie-ratings-omega.vercel.app .
 2. Enter the name of the movie you want to search for in the provided input field.
 3. Click the "Search" button.
 4. The application will retrieve the movie's ratings from IMDb and Rotten Tomatoes.
