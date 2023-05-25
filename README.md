@@ -21,7 +21,7 @@ This Flask application allows you to search for a movie and retrieve its ratings
 2.  Install the required Dependencies
 
     ```bash
-    pip install -r requirements.py
+    pip install -r requirements.txt
 
 3. Run the Flask Application:
 
