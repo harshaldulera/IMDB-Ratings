@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
 from imdb import Cinemagoer
 import requests
 import re
@@ -52,7 +52,7 @@ def result():
         return redirect('/')
     except Exception as e:
         # Handle any other exceptions that may occur
-        return "An error occurred: " + str(e) + " (The entered movie name is invalid)"
+        return "An error occurred: " + str(e)
 
 if __name__ == '__main__':
     app.run(debug=True)
